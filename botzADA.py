@@ -21,13 +21,11 @@ async def ingridt(context):
         '“Vocês são os melhores em serem vcs e estão aqui por isso”': 'Ingridt, 21/02/2022',
     }
 
-    colors = ["#FFA8B8", "#B5DCF9", "#F6ECAB", "#F6ECAB", "#BDF6E3", "#E3D2F4"]
-
+    color = "#FFFFCB"
     random_phrase = random.choice(list(phrases.keys()))
     date = phrases[random_phrase]
-    embed_color = random.choice(colors)
 
-    myEmbed = discord.Embed(title='Teste 1', description='Teste 2', color=embed_color)
+    myEmbed = discord.Embed(title='Teste 1', description='Teste 2', color=color)
     myEmbed.set_footer(text="teste 3")
     myEmbed.set_author(name="teste 4")
 
