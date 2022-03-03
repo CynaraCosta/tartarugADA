@@ -27,6 +27,15 @@ async def leave(context):
     else:
         await context.send("Eu nem tô em um canal PÔ!")
 
+@client.command()
+async def teste(context):
+    embed = discord.Embed(
+        title = 'Ingridt diria...'
+        color = #FFFFCB
+    )
+
+    embed.add_field(value='"Dias de luta, dias de derrota" \n Ingridt, 23/02/2022')
+
 @client.command(name="ingridt")
 async def ingridt(context):
     
