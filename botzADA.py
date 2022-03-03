@@ -1,3 +1,4 @@
+from turtle import color, title
 import discord
 from discord.ext import commands
 import random
@@ -29,10 +30,7 @@ async def leave(context):
 
 @client.command()
 async def teste(context):
-    embed = discord.Embed(
-        title = 'Ingridt diria...'
-        color = #FFFFCB
-    )
+    embed = discord.Embed(title = 'Ingridt diria...', color = "#FFFFCB")
 
     embed.add_field(value='"Dias de luta, dias de derrota" \n Ingridt, 23/02/2022')
 
