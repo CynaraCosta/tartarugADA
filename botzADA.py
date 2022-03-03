@@ -2,6 +2,11 @@ from turtle import color, title
 import discord
 from discord.ext import commands
 import random
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+TOKEN_DISCORD = os.getenv("TOKEN")
 
 client = commands.Bot(command_prefix= "!")
 client.remove_command('help')
@@ -58,4 +63,4 @@ async def ingridt(context):
 
     #await context.channel.send(embed=embed)
 
-client.run(TOKEN)
+client.run(TOKEN_DISCORD)
