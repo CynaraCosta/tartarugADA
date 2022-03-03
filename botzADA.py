@@ -11,6 +11,22 @@ async def hello(context):
     author = context.message.author
     await author.send('Hi, i hope your day is going phenomenal!')
 
+@client.command()
+async def join(context):
+    if context.author.voice:
+        channel = context.author.voice.channel
+        await channel.connect()
+    else:
+        await context.send("Você precisa entrar em um canal antes de me chamar!")
+
+@client.command()
+async def leave(context):
+    if context.voice_client:
+        await context.voice_client.disconnect()
+        await context.send("Saindoooo!")
+    else:
+        await context.send("Eu nem tô em um canal PÔ!")
+
 @client.command(name="ingridt")
 async def ingridt(context):
     
