@@ -2,7 +2,6 @@ from turtle import color, title
 import discord
 from discord.ext import commands
 import random
-from token import TOKEN
 
 client = commands.Bot(command_prefix= "!")
 client.remove_command('help')
@@ -30,9 +29,10 @@ async def leave(context):
 
 @client.command()
 async def teste(context):
-    embed = discord.Embed(title = 'Ingridt diria...', color = "#FFFFCB")
+    embed = discord.Embed(title = 'Ingridt diria...', color = 0xFFFFCB)
 
-    embed.add_field(value='"Dias de luta, dias de derrota" \n Ingridt, 23/02/2022')
+    embed.add_field(name= '"Dias de luta, dias de derrota"', value="Ingridt, 23/02/2022")
+    await context.message.channel.send(embed=embed)
 
 @client.command(name="ingridt")
 async def ingridt(context):
