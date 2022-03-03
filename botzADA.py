@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+from token import *
 
 
 client = commands.Bot(command_prefix= "!")
@@ -37,4 +38,4 @@ async def ingridt(context):
 
     #await context.channel.send(embed=embed)
 
-client.run("OTQ4Njg1NjM0Njg2NTUwMDI2.Yh_aWQ.HluRHr8UxqhmYd6zp4RKLvmKHz0")
+client.run(TOKEN)
