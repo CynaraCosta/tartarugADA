@@ -39,6 +39,23 @@ async def teste(context):
     embed.add_field(name= '"Dias de luta, dias de derrota"', value="Ingridt, 23/02/2022")
     await context.message.channel.send(embed=embed)
 
+@client.command()
+async def novoteste(context):
+
+    phrases = {
+        '“Dias de luta, dias de derrota”': 'Ingridt, 23/02/2022',
+        '“Coachs (...) são essenciais”': 'Ingridt, 20/02/2022',
+        '“Vocês são os melhores em serem vcs e estão aqui por isso”': 'Ingridt, 21/02/2022',
+    }
+
+    random_phrase = random.choice(list(phrases.keys()))
+    date = phrases[random_phrase]
+
+    embed = discord.Embed(title = 'Ingridt diria...', color = 0xFFFFCB)
+
+    embed.add_field(name = random_phrase, value = date)
+    await context.message.channel.send(embed=embed)
+
 @client.command(name="ingridt")
 async def ingridt(context):
     
