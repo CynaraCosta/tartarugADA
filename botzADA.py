@@ -1,15 +1,42 @@
-from turtle import color, title
 import discord
 from discord.ext import commands
+from discord import FFmpegPCMAudio
+from config import *
+import random
+import firebase_admin
+from firebase_admin import db
+from datetime import date
+from firebase_admin import credentials
 import random
 from dotenv import load_dotenv
 import os
 load_dotenv()
 
+cred = credentials.Certificate(firebase_config)
+databaseApp = firebase_admin.initialize_app(cred, {
+    'databaseURL' : DatabaseURL
+})
+
 TOKEN_DISCORD = os.getenv("TOKEN")
 
 client = commands.Bot(command_prefix= "!")
 client.remove_command('help')
+
+ref = db.reference("/")
+ref.set({
+    "frasesingridt" : {
+        "-Ingridt, 21-02-2022" : '“Vocês são os melhores em serem vcs e estão aqui por isso”',
+        "-Ingridt, 20-02-2022" : '“Coachs (...) são essenciais”',
+        "-Ingridt, 23-02-2022" : '“Dias de luta, dias de derrota”',
+    }
+})
+
+@client.command(name="frase")
+async def frase(context):
+    message = str(context.message.content)
+    ref2 = db.reference('frasesingridt')
+    emp_ref = ref2.push({context.message.author : {"-Indridt, " + str(date.today().strftime("%d-%m-%Y")) : str(message[6:])}})
+
 
 @client.command(name='hello')
 async def hello(context):
@@ -33,14 +60,7 @@ async def leave(context):
         await context.send("Eu nem tô em um canal PÔ!")
 
 @client.command()
-async def teste(context):
-    embed = discord.Embed(title = 'Ingridt diria...', color = 0xFFFFCB)
-
-    embed.add_field(name= '"Dias de luta, dias de derrota"', value="Ingridt, 23/02/2022")
-    await context.message.channel.send(embed=embed)
-
-@client.command()
-async def novoteste(context):
+async def ingridt(context):
 
     phrases = {
         '“Dias de luta, dias de derrota”': 'Ingridt, 23/02/2022',
@@ -55,29 +75,5 @@ async def novoteste(context):
 
     embed.add_field(name = random_phrase, value = date)
     await context.message.channel.send(embed=embed)
-
-@client.command(name="ingridt")
-async def ingridt(context):
-    
-    phrases = {
-        '“Dias de luta, dias de derrota”': 'Ingridt, 23/02/2022',
-        '“Coachs (...) são essenciais”': 'Ingridt, 20/02/2022',
-        '“Vocês são os melhores em serem vcs e estão aqui por isso”': 'Ingridt, 21/02/2022',
-    }
-
-    color = "#FFFFCB"
-    random_phrase = random.choice(list(phrases.keys()))
-    date = phrases[random_phrase]
-
-    myEmbed = discord.Embed(title='Teste 1', description='Teste 2', color=color)
-    myEmbed.set_footer(text="teste 3")
-    myEmbed.set_author(name="teste 4")
-
-    await context.message.channel.send(embed=myEmbed)
-
-    #embed = discord.Embed(title= date, description= random_phrase, color= embed_color)
-    #await context.message.channel.send(embed=embed)
-
-    #await context.channel.send(embed=embed)
 
 client.run(TOKEN_DISCORD)
